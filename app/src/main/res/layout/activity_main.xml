@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Convertidor Universal"
+            android:text="Convertidor A Todo"
             android:textColor="@android:color/white"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -94,7 +94,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Convertir Moneda"
-                    android:layout_marginTop="16dp" />
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/verde_mar"
+                    app:strokeColor="@color/rojo"/>
 
                 <TextView
                     android:id="@+id/resultCurrency"
@@ -173,7 +175,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Convertir Temperatura"
-                    android:layout_marginTop="16dp" />
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="@color/rojo"
+                    />
 
                 <TextView
                     android:id="@+id/resultTemperature"
@@ -252,7 +256,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Convertir Longitud"
-                    android:layout_marginTop="16dp" />
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/rojo"
+                    android:textStyle="bold"
+                    android:backgroundTint="@color/aguamarina"/>
 
                 <TextView
                     android:id="@+id/resultLength"
