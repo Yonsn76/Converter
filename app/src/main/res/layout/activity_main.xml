@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Convertidor A Todo"
+            android:text="⚖️Convertidor A Todo⚖️"
             android:textColor="@android:color/white"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -44,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Conversor de Moneda"
+                    android:text="Conversor de Moneda 💸💸💸"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black" />
@@ -103,6 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:textColor="#3F51B5"
                     android:textSize="18sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -125,7 +126,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Conversor de Temperatura"
+                    android:text="Conversor de Temperatura 🌡️🌡️🌡️🌡️"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black" />
@@ -184,6 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:textColor="#3F51B5"
                     android:textSize="18sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -206,7 +208,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Conversor de Longitud"
+                    android:text="Conversor de Longitud 📏📏📏"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black" />
@@ -266,6 +268,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:textColor="#3F51B5"
                     android:textSize="18sp" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
