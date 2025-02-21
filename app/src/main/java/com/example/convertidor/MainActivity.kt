@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupSpinners() {
-        val currencyOptions = arrayOf("USD", "EUR", "GBP", "JPY")
+        val currencyOptions = arrayOf("Soles (S)","Dolar (USD)", "Euro (EUR)", "lIBRA (GBP)", "Yen (JPY)","Franco (CHF)","PesoMx (MXN)","Rupia (INR)" )
         val temperatureOptions = arrayOf("Celsius", "Fahrenheit", "Kelvin")
         val lengthOptions = arrayOf("Metros", "Kilómetros", "Millas", "Pies")
 
@@ -88,11 +88,29 @@ class MainActivity : AppCompatActivity() {
 
         val from = currencyFrom.selectedItem.toString()
         val to = currencyTo.selectedItem.toString()
-        
-        // Aquí deberías implementar la lógica real de conversión de moneda
-        val result = amount * 1.1 // Este es solo un ejemplo, no una conversión real
+
+        val result = convertCurrencyAmount(amount, from, to)
 
         resultCurrency.text = "%.2f %s = %.2f %s".format(amount, from, result, to)
+    }
+
+    private fun convertCurrencyAmount(amount: Double, from: String, to: String): Double {
+        val rates = mapOf(
+            "Soles (S)" to 1.0,
+            "Dolar (USD)" to 3.70,  // 1 USD = 3.70 Soles
+            "Euro (EUR)" to 4.05,   // 1 EUR = 4.05 Soles
+            "lIBRA (GBP)" to 4.70,  // 1 GBP = 4.70 Soles
+            "Yen (JPY)" to 0.026,   // 1 JPY = 0.026 Soles
+            "Franco (CHF)" to 4.20, // 1 CHF = 4.20 Soles
+            "PesoMx (MXN)" to 0.22, // 1 MXN = 0.22 Soles
+            "Rupia (INR)" to 0.045  // 1 INR = 0.045 Soles
+        )
+
+        // Convertir primero a Soles
+        val amountInSoles = if (from == "Soles (S)") amount else amount * rates[from]!!
+
+        // Luego convertir de Soles a la moneda destino
+        return if (to == "Soles (S)") amountInSoles else amountInSoles / rates[to]!!
     }
 
     private fun convertTemperature() {
@@ -104,12 +122,15 @@ class MainActivity : AppCompatActivity() {
 
         val from = temperatureFrom.selectedItem.toString()
         val to = temperatureTo.selectedItem.toString()
-        
-        // Aquí deberías implementar la lógica real de conversión de temperatura
+
         val result = when {
             from == "Celsius" && to == "Fahrenheit" -> (amount * 9/5) + 32
             from == "Fahrenheit" && to == "Celsius" -> (amount - 32) * 5/9
-            else -> amount // Si son iguales o para otras conversiones
+            from == "Celsius" && to == "Kelvin" -> amount + 273.15
+            from == "Kelvin" && to == "Celsius" -> amount - 273.15
+            from == "Fahrenheit" && to == "Kelvin" -> (amount - 32) * 5/9 + 273.15
+            from == "Kelvin" && to == "Fahrenheit" -> (amount - 273.15) * 9/5 + 32
+            else -> amount // Si son iguales
         }
 
         resultTemperature.text = "%.2f %s = %.2f %s".format(amount, from, result, to)
@@ -124,14 +145,17 @@ class MainActivity : AppCompatActivity() {
 
         val from = lengthFrom.selectedItem.toString()
         val to = lengthTo.selectedItem.toString()
-        
-        // Aquí deberías implementar la lógica real de conversión de longitud
+
         val result = when {
             from == "Metros" && to == "Kilómetros" -> amount / 1000
             from == "Kilómetros" && to == "Metros" -> amount * 1000
             from == "Millas" && to == "Kilómetros" -> amount * 1.60934
             from == "Kilómetros" && to == "Millas" -> amount / 1.60934
-            else -> amount // Si son iguales o para otras conversiones
+            from == "Metros" && to == "Pies" -> amount * 3.28084
+            from == "Pies" && to == "Metros" -> amount / 3.28084
+            from == "Millas" && to == "Pies" -> amount * 5280
+            from == "Pies" && to == "Millas" -> amount / 5280
+            else -> amount // Si son iguales
         }
 
         resultLength.text = "%.2f %s = %.2f %s".format(amount, from, result, to)
