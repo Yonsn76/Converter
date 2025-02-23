@@ -4,8 +4,12 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * Actividad principal de la aplicación de conversión de unidades.
+ */
 class MainActivity : AppCompatActivity() {
 
+    // Declaración de variables para los elementos de la interfaz de usuario
     private lateinit var amountCurrency: EditText
     private lateinit var currencyFrom: Spinner
     private lateinit var currencyTo: Spinner
@@ -52,11 +56,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Inicialización de los elementos de la interfaz de usuario
         initializeViews()
         setupSpinners()
         setupButtonListeners()
     }
 
+    /**
+     * Inicializa los elementos de la interfaz de usuario.
+     */
     private fun initializeViews() {
         amountCurrency = findViewById(R.id.amountCurrency)
         currencyFrom = findViewById(R.id.currencyFrom)
@@ -101,6 +109,9 @@ class MainActivity : AppCompatActivity() {
         resultSpeed = findViewById(R.id.resultSpeed)
     }
 
+    /**
+     * Configura los Spinners con las opciones de conversión.
+     */
     private fun setupSpinners() {
         val currencyOptions = arrayOf("Soles (S)","Dolar (USD)", "Euro (EUR)", "lIBRA (GBP)", "Yen (JPY)","Franco (CHF)","PesoMx (MXN)","Rupia (INR)" )
         val temperatureOptions = arrayOf("Celsius", "Fahrenheit", "Kelvin")
@@ -126,6 +137,10 @@ class MainActivity : AppCompatActivity() {
         setupSpinner(speedTo, speedOptions)
     }
 
+    /**
+     * Configura un Spinner específico con las opciones de conversión.
+     *(Spinner a configurar y Opciones de conversión)
+     */
     private fun setupSpinner(spinner: Spinner, options: Array<String>) {
         ArrayAdapter(this, android.R.layout.simple_spinner_item, options).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -133,6 +148,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Configura los listeners de los botones de conversión.
+     */
     private fun setupButtonListeners() {
         buttonConvertCurrency.setOnClickListener { convertCurrency() }
         buttonConvertTemperature.setOnClickListener { convertTemperature() }
@@ -143,6 +161,9 @@ class MainActivity : AppCompatActivity() {
         buttonConvertSpeed.setOnClickListener { convertSpeed() }
     }
 
+    /**
+     * Realiza la conversión de divisas.
+     */
     private fun convertCurrency() {
         val amount = amountCurrency.text.toString().toDoubleOrNull()
         if (amount == null) {
@@ -158,6 +179,12 @@ class MainActivity : AppCompatActivity() {
         resultCurrency.text = "%.2f %s = %.2f %s".format(amount, from, result, to)
     }
 
+    /**
+     * Realiza el cálculo de la conversión de divisas.
+     * donde (amount es para la Cantidad a convertir,
+     * from indica la Moneda de origen
+     * y  to indica la Moneda de destino)
+     */
     private fun convertCurrencyAmount(amount: Double, from: String, to: String): Double {
         val rates = mapOf(
             "Soles (S)" to 1.0,
@@ -177,6 +204,9 @@ class MainActivity : AppCompatActivity() {
         return if (to == "Soles (S)") amountInSoles else amountInSoles / rates[to]!!
     }
 
+    /**
+     * Realiza la conversión de temperatura.
+     */
     private fun convertTemperature() {
         val amount = amountTemperature.text.toString().toDoubleOrNull()
         if (amount == null) {
@@ -200,6 +230,9 @@ class MainActivity : AppCompatActivity() {
         resultTemperature.text = "%.2f %s = %.2f %s".format(amount, from, result, to)
     }
 
+    /**
+     * Realiza la conversión de longitud.
+     */
     private fun convertLength() {
         val amount = amountLength.text.toString().toDoubleOrNull()
         if (amount == null) {
@@ -225,6 +258,9 @@ class MainActivity : AppCompatActivity() {
         resultLength.text = "%.2f %s = %.2f %s".format(amount, from, result, to)
     }
 
+    /**
+     * Realiza la conversión de criptomonedas.
+     */
     private fun convertCrypto() {
         val amount = amountCrypto.text.toString().toDoubleOrNull()
         if (amount == null) {
@@ -262,6 +298,9 @@ class MainActivity : AppCompatActivity() {
         resultCrypto.text = "%.2f %s = %.2f %s".format(amount, from, result, to)
     }
 
+    /**
+     * Realiza la conversión de datos.
+     */
     private fun convertData() {
         val amount = amountData.text.toString().toDoubleOrNull()
         if (amount == null) {
@@ -291,6 +330,9 @@ class MainActivity : AppCompatActivity() {
         resultData.text = "%.2f %s = %.2f %s".format(amount, from, result, to)
     }
 
+    /**
+     * Realiza la conversión de peso.
+     */
     private fun convertWeight() {
         val amount = amountWeight.text.toString().toDoubleOrNull()
         if (amount == null) {
@@ -320,6 +362,9 @@ class MainActivity : AppCompatActivity() {
         resultWeight.text = "%.2f %s = %.2f %s".format(amount, from, result, to)
     }
 
+    /**
+     * Realiza la conversión de velocidad.
+     */
     private fun convertSpeed() {
         val amount = amountSpeed.text.toString().toDoubleOrNull()
         if (amount == null) {
